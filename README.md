@@ -7,7 +7,9 @@ Contact:   martin.hansen@brunel.ac.uk; zoltan.fazekas@gmail.com
 
 # Disclaimer
 
-Please use the data files for replication/reproduction purposes. For novel analysis using this dataset, please contact Martin Ejnar Hansen (martin.hansen@brunel.ac.uk) for conditions of data use and citations. 
+Please use the data files for replication/reproduction purposes. For novel analysis using this dataset, please contact Martin Ejnar Hansen (martin.hansen@brunel.ac.uk) for conditions of data use and citations.
+
+The analysis was carried out throughout multiple steps, while the author of the script was going back and forth between camelCase, underscore, and other naming conventions. Sorry for the inconsistencies. 
 
 # Notes 
 
