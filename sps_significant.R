@@ -489,13 +489,24 @@ votemargin <- as.data.frame(m1) %>%
                           extVote = mean(noExtVoted/2, na.rm = T),
                           extVoteSE = se(noExtVoted/2)
                     )
+# ggplot(votemargin,
+#             aes(x = period, y = passed, ymin = passed - 1.96*passedSE,
+#                 ymax = passed + 1.96*passedSE, group = as.factor(long), colour = as.factor(long))) + 
+#     geom_line() + geom_point() + geom_smooth(data = votemargin, aes(x = period, ymin = passed - 1.96*passedSE,
+#                 ymax = passed + 1.96*passedSE), stat = "identity", 
+#                 alpha = 0.5) + plotTheme() +
+#     scale_colour_manual("", values = c("0" = "darkblue", "1" = "red"),
+#                             labels = c("0" = "Not significant", "1" = "Significant")) +
+#     theme(axis.text.x = element_text(angle = 90)) +
+#     ylab("Average majority/minority on votes") +
+#     xlab("") +
+#     theme(legend.position = c(0.9, 0.15))
 ggplot(votemargin,
             aes(x = period, y = passed, ymin = passed - 1.96*passedSE,
                 ymax = passed + 1.96*passedSE, group = as.factor(long), colour = as.factor(long))) + 
-    geom_line() + geom_point() + geom_smooth(data = votemargin, aes(x = period, ymin = passed - 1.96*passedSE,
-                ymax = passed + 1.96*passedSE), stat = "identity", 
-                alpha = 0.5) + plotTheme() +
-    scale_colour_manual("", values = c("0" = "darkblue", "1" = "red"),
+    geom_line(alpha = 0.75) + geom_pointrange() +
+    plotTheme() +
+    scale_colour_manual("", values = c("0" = "grey70", "1" = "black"),
                             labels = c("0" = "Not significant", "1" = "Significant")) +
     theme(axis.text.x = element_text(angle = 90)) +
     ylab("Average majority/minority on votes") +
@@ -503,13 +514,13 @@ ggplot(votemargin,
     theme(legend.position = c(0.9, 0.15))
 ggsave("./output/main-fig-2.pdf", 
        height = 6, width = 8, units ='in')
+
 ggplot(votemargin,
             aes(x = period, y = nonGov, ymin = nonGov - 1.96*nonGovSE,
                 ymax = nonGov + 1.96*nonGovSE, group = as.factor(long), colour = as.factor(long))) + 
-    geom_line() + geom_point() + geom_smooth(data = votemargin, aes(x = period, ymin = nonGov - 1.96*nonGovSE,
-                ymax = nonGov + 1.96*nonGovSE), stat = "identity", 
-                alpha = 0.5) + plotTheme() +
-    scale_colour_manual("", values = c("0" = "darkblue", "1" = "red"),
+    geom_line(alpha = 0.75) + geom_pointrange() +
+    plotTheme() +
+    scale_colour_manual("", values = c("0" = "grey70", "1" = "black"),
                             labels = c("0" = "Not significant", "1" = "Significant")) +
     theme(axis.text.x = element_text(angle = 90)) +
     ylab("Average proportion of opposition parties voting with Government") +
@@ -520,10 +531,9 @@ ggsave("./output/main-fig-3.pdf",
 ggplot(votemargin,
             aes(x = period, y = extVote, ymin = extVote - 1.96*extVoteSE,
                 ymax = extVote + 1.96*extVoteSE, group = as.factor(long), colour = as.factor(long))) + 
-    geom_line() + geom_point() + geom_smooth(data = votemargin, aes(x = period, ymin = extVote - 1.96*extVoteSE,
-                ymax = extVote + 1.96*extVoteSE), stat = "identity", 
-                alpha = 0.5) + plotTheme() +
-    scale_colour_manual("", values = c("0" = "darkblue", "1" = "red"),
+    geom_line(alpha = 0.75) + geom_pointrange() +
+    plotTheme() +
+    scale_colour_manual("", values = c("0" = "grey70", "1" = "black"),
                             labels = c("0" = "Not significant", "1" = "Significant")) +
     theme(axis.text.x = element_text(angle = 90)) +
     ylab("Average proportion of extreme parties voting with Government") +
@@ -598,8 +608,8 @@ votemargin.m$variableS[votemargin.m$variable == "extVote"] <- "Extreme parties v
 ## --------------------------------------------------------------------------##
 ## Main text, Figure 5
 ggplot(votemargin.m, aes(x = govSize, y = value, group = as.factor(longS), colour = as.factor(longS))) + geom_point() + plotTheme() + facet_wrap(~variableS) + stat_smooth(aes(fill = as.factor(longS)), alpha = 0.25, method = "lm") + xlab("Government seat share") + ylab("Proportion") +
-    scale_colour_manual("", values = c("Not significant" = "darkblue", "Significant" = "darkred")) +
-    scale_fill_manual("", values = c("Not significant" = "darkblue", "Significant" = "darkred"))
+    scale_colour_manual("", values = c("Not significant" = "grey70", "Significant" = "black")) +
+    scale_fill_manual("", values = c("Not significant" = "grey70", "Significant" = "black"))
 ggsave("./output/main-fig-5.pdf", 
        height = 5, width = 7, units ='in')
 ## --------------------------------------------------------------------------##
